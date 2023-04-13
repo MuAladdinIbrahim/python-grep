@@ -1,15 +1,21 @@
 import sys
+import re
 
 # import pyparsing - available if you need it!
 # import lark - available if you need it!
 
 
 def match_pattern(input_line, pattern):
+    if(pattern == '/d'):
+        return contains_number(input_line)
     if len(pattern) == 1:
         return pattern in input_line
     else:
         raise RuntimeError(f"Unhandled pattern: {pattern}")
 
+def contains_number(input_line):
+    RE_D = re.compile('/d')
+    return RE_D.search('/d', input_line)
 
 def main():
     pattern = sys.argv[2]
