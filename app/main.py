@@ -8,6 +8,8 @@ import re
 def match_pattern(input_line, pattern):
     if(pattern == "\d"):
         return contains_number(input_line)
+    if(pattern == "\w"):
+        return contains_alphanumeric(input_line)
     if len(pattern) == 1:
         return pattern in input_line
     else:
@@ -15,6 +17,9 @@ def match_pattern(input_line, pattern):
 
 def contains_number(input_line):
     return re.search('\d', input_line)
+
+def contains_alphanumeric(input_line):
+    return input_line.isalnum()
 
 def main():
     pattern = sys.argv[2]
