@@ -6,6 +6,9 @@ import re
 
 
 def match_pattern(input_line, pattern):
+    print(type(pattern), len(pattern))
+    if(len(pattern) > 2):
+        return positive_group(input_line, pattern)
     if(pattern == "\d"):
         return contains_number(input_line)
     if(pattern == "\w"):
@@ -14,6 +17,9 @@ def match_pattern(input_line, pattern):
         return pattern in input_line
     else:
         raise RuntimeError(f"Unhandled pattern: {pattern}")
+
+def positive_group(input_line, pattern):
+    return input_line in pattern
 
 def contains_number(input_line):
     return re.search('\d', input_line)
