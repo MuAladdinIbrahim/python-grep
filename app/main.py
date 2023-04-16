@@ -6,7 +6,8 @@ import re
 
 
 def match_pattern(input_line, pattern):
-    print(type(pattern), len(pattern))
+    if('^' in pattern):
+        return negative_group(input_line, pattern)
     if(len(pattern) > 2):
         return positive_group(input_line, pattern)
     if(pattern == "\d"):
@@ -20,6 +21,12 @@ def match_pattern(input_line, pattern):
 
 def positive_group(input_line, pattern):
     return input_line in pattern
+
+def negative_group(input_line, pattern):
+    for char in input_line:
+        match = re.search(pattern, char)
+        if match:
+            return True
 
 def contains_number(input_line):
     return re.search('\d', input_line)
